@@ -17,7 +17,13 @@ import { theme } from "@/app/theme";
 import HideScroll from "../footer/Footer";
 import PropTypes from "prop-types";
 
-const pages = ["Home", "Feature", "Use Case", "Contact", "Try it Now!"];
+const pages = [
+  { title: "Home", menuLink: "/" },
+  { title: "Feature", menuLink: "#" },
+  { title: "Use Case", menuLink: "#" },
+  { title: "Contact", menuLink: "#" },
+  { title: "Try it Now!", menuLink: "#" },
+];
 
 const Images = styled(Image)({});
 
@@ -144,9 +150,10 @@ export default function Navbar(props) {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {pages.map((page, idx) => (
                   <MenuItem
-                    key={page}
+                    key={idx}
+                    href={page.menuLink}
                     onClick={handleCloseNavMenu}
                     sx={{
                       minHeight: "20px",
@@ -158,7 +165,7 @@ export default function Navbar(props) {
                         fontSize: "12px",
                       })}
                     >
-                      {page}
+                      {page.title}
                     </Typography>
                   </MenuItem>
                 ))}
@@ -172,13 +179,14 @@ export default function Navbar(props) {
                 gap: "50px",
               }}
             >
-              {pages.map((page) => (
+              {pages.map((page, idx) => (
                 <Button
-                  key={page}
+                  key={idx}
+                  href={page.menuLink}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  {page.title}
                 </Button>
               ))}
             </Box>

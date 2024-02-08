@@ -12,14 +12,22 @@ const poppins = Poppins({
 const montserrat = Montserrat({ weight: ["500"], subsets: ["latin"] });
 const openSans = Open_Sans({ weight: ["500"], subsets: ["latin"] });
 
+export const sticky = {
+  position: "fixed",
+  top: 0,
+  width: "100%",
+};
+
 const colors = {
   primary: {
     main: "#F2F2F2",
   },
   navbarFontColor: "#4F4F4F",
   bluePrimary: "#034EA1",
+  blueTeritary: "#D9E7F4",
   grey: { main: "#E0E0E0" },
   grey1: "#828282",
+  grey2: "#BDBDBD",
 };
 
 export const theme = createTheme({
@@ -31,6 +39,12 @@ export const theme = createTheme({
         md: 900,
         lg: 1200,
         xl: 1536,
+        compareTab: 1300,
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        fontFamily: poppins.style.fontFamily,
       },
     },
     MuiLink: {
@@ -39,7 +53,7 @@ export const theme = createTheme({
       },
       styleOverrides: {
         textDecoration: "unset",
-      }
+      },
     },
     MuiTypography: {
       defaultProps: {
@@ -55,6 +69,14 @@ export const theme = createTheme({
           sectionSubTitle: "p",
           cardTitle: "h1",
           cardSubTitle: "p",
+          links: "span",
+          tabTitle: "h1",
+          tabSubtitle: "p",
+          tabContentTitle: "h1",
+          tabContentSubtitle: "p",
+          summaryTitle: "h1",
+          summarySubTitle: "p",
+          summaryDesc: "p",
         },
       },
     },
@@ -90,6 +112,31 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colors.blueTeritary,
+          // mx: "0 auto",
+          // margin : "8px",
+          color: colors.bluePrimary,
+          // width: "100%",
+          fontFamily: poppins.style.fontFamily,
+          padding: "10px 15px",
+          textTransform: "capitalize",
+          "&.Mui-selected": {
+            backgroundColor: colors.bluePrimary,
+            color: colors.blueTeritary,
+            borderRadius: "8px",
+          },
+          // "& .MuiTabs-indicator": {
+          //   display: "none",
+          // },
+          "& .MuiTabs-flexContainer": {
+            justifyContent: "center",
+          },
+        },
+      },
+    },
   },
   palette: {
     ...colors,
@@ -100,7 +147,7 @@ export const theme = createTheme({
       color: colors.navbarFontColor,
     },
     title: {
-      fontSize: "clamp(1.83rem, 1.92vw + 1.32rem, 3.16rem)",
+      fontSize: "clamp(0.75rem, 2.53vw + 0.07rem, 2.5rem)",
       fontWeight: "800",
       lineHeight: "55px",
       letterSpacing: "1.2px",
@@ -109,27 +156,27 @@ export const theme = createTheme({
     subTitle: {
       color: colors.grey.main,
       textAlign: "justify",
-      fontSize: "clamp(0.75rem, 0.18vw + 0.7rem, 0.88rem)",
+      fontSize: "clamp(0.44rem, 0.63vw + 0.27rem, 0.88rem)",
       fontWeight: 500,
       lineHeight: "33px",
       letterSpacing: "0.56px",
     },
     sectionTitle: {
       color: colors.bluePrimary,
-      fontSize: "clamp(1.83rem, 1.92vw + 1.32rem, 3.16rem)",
+      fontSize: "clamp(1.06rem, 2.08vw + 0.5rem, 2.5rem)",
       fontWeight: 700,
       textTransform: "capitalize",
     },
     sectionSubTitle: {
       color: colors.grey1,
       textAlign: "center",
-      fontSize: "clamp(0.75rem, 0.36vw + 0.65rem, 1rem)",
+      fontSize: "clamp(0.5rem, 0.45vw + 0.38rem, 0.81rem)",
       fontWeight: 500,
       lineHeight: "25px",
     },
     cardTitle: {
       color: "white",
-      fontSize: "17px",
+      fontSize: "clamp(0.75rem, 0.45vw + 0.63rem, 1.06rem)",
       fontWeight: 600,
       textTransform: "Uppercase",
       letterSpacing: "1px",
@@ -137,21 +184,47 @@ export const theme = createTheme({
     cardSubTitle: {
       color: "white",
       textAlign: "justify",
-      fontSize: "12px",
+      fontSize: "clamp(0.5rem, 0.36vw + 0.4rem, 0.75rem)",
       fontWeight: 400,
       opacity: 0.9,
+    },
+    tabTitle: {
+      fontSize: "clamp(0.88rem, 1.63vw + 0.44rem, 2rem)",
+      fontWeight: 700,
+      color: colors.bluePrimary,
+    },
+    tabContentTitle: {
+      fontSize: "clamp(0.75rem, 0.72vw + 0.56rem, 1.25rem)",
+      color: colors.bluePrimary,
+      fontWeight: 700,
+    },
+    tabContentSubtitle: {
+      fontSize: "clamp(0.63rem, 0.18vw + 0.58rem, 0.75rem)",
+      color: colors.navbarFontColor,
+      textAlign: "justify",
+      fontWeight: 400,
+    },
+    summaryTitle: {
+      fontSize: "clamp(0.81rem, 0.99vw + 0.55rem, 1.5rem)",
+      fontWeight: 700,
+      color: colors.bluePrimary,
+    },
+    summarySubTitle: {
+      fontSize: "clamp(0.75rem, 0.54vw + 0.6rem, 1.13rem)",
+      fontWeight: 700,
+      color: colors.bluePrimary,
+    },
+    summaryDesc: {
+      fontSize: "clamp(0.63rem, 0.27vw + 0.55rem, 0.81rem)",
+      textAlign: "justify",
+      fontWeight: 500,
+      color: colors.navbarFontColor,
     },
   },
 });
 
-// --font-size-xs: clamp(0.75rem, 0.36vw + 0.65rem, 1rem);
-// --font-size-sm: clamp(0.94rem, 0.57vw + 0.78rem, 1.33rem);
-// --font-size-md: clamp(1.17rem, 0.88vw + 0.94rem, 1.78rem);
-// --font-size-lg: clamp(1.46rem, 1.31vw + 1.11rem, 2.37rem);
-// --font-size-xl: clamp(1.83rem, 1.92vw + 1.32rem, 3.16rem);
-
-// --font-size-xs: clamp(0.75rem, 0.18vw + 0.7rem, 0.88rem);
-// --font-size-sm: clamp(0.94rem, 0.33vw + 0.85rem, 1.17rem);
-// --font-size-md: clamp(1.17rem, 0.55vw + 1.02rem, 1.55rem);
-// --font-size-lg: clamp(1.46rem, 0.88vw + 1.23rem, 2.07rem);
-// --font-size-xl: clamp(1.83rem, 1.35vw + 1.47rem, 2.76rem);
+// --font-size-xs: clamp(0.2rem, 0.16vw + 0.16rem, 0.32rem);
+// --font-size-sm: clamp(0.26rem, 0.24vw + 0.19rem, 0.42rem);
+// --font-size-md: clamp(0.32rem, 0.35vw + 0.23rem, 0.56rem);
+// --font-size-lg: clamp(0.4rem, 0.51vw + 0.26rem, 0.75rem);
+// --font-size-xl: clamp(0.5rem, 0.72vw + 0.31rem, 1rem);

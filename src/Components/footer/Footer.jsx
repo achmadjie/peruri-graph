@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography, styled } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,56 +8,91 @@ const Links = styled(Link)({});
 export default function Footer() {
   return (
     <Container
+      component={"section"}
+      position="realtive"
       sx={(theme) => ({
         backgroundColor: "bluePrimary",
         color: "black",
         marginTop: "100px",
-        height: "100dvh",
-        mx: "0 auto",
+        height: "100%",
+        "&.MuiContainer-root": {
+          maxWidth: "100%",
+          padding: "60px 350px",
+        },
+        [theme.breakpoints.down("md")]: {
+          "&.MuiContainer-root": {
+            maxWidth: "100%",
+            padding: "35px 40px",
+          },
+        },
       })}
     >
       <Box
+        component="footer"
         sx={(theme) => ({
           backgroundColor: "bluePrimary",
           color: "black",
-          marginTop: "100px",
+          // marginTop: "100px",
           height: "100%",
-          mx: "0 auto",
+          textAlign: "center",
         })}
       >
-        <Images
-          src={"/peruri-logo.png"}
-          width={70}
-          height={30}
-          alt="peruri-logo"
-        />
+        <Box
+          position={"relative"}
+          sx={(theme) => ({
+            width: "100%",
+            height: "60px",
+            marginBottom: "20px",
+            [theme.breakpoints.down("md")]: {
+              height: "30px",
+              marginBottom: "15px",
+            },
+          })}
+        >
+          <Images
+            src={"/peruri-logo.png"}
+            // position="relative"
+            fill
+            alt="peruri-logo"
+            sx={(theme) => ({
+              objectFit: "contain",
+            })}
+          />
+        </Box>
         <Divider
           sx={(theme) => ({
-            maxWidth: "450px",
             backgroundColor: "white",
             borderBottomWidth: ".5px",
             borderRadius: "30px",
+            marginBottom: "20px",
+            [theme.breakpoints.down("md")]: {
+              marginBottom: "15px",
+            },
           })}
         />
         <Typography
           sx={(theme) => ({
-            fontSize: "0.813rem",
+            fontSize: "1rem",
             fontWeight: "500",
             color: "grey.main",
+            [theme.breakpoints.down("md")]: {
+              fontSize: "0.6rem",
+            },
           })}
         >
           Copyright © Perum Peruri. All rights reserved |{" "}
           <Links
             href={"#"}
             sx={(theme) => ({
-              color: "grey1",
-              textAlign: "center",
-              fontSize: "16px",
-              fontWeight: 400,
+              fontWeight: 500,
               textDecoration: "unset",
-              mx: "auto",
+              color: "grey.main",
+              fontSize: "1rem",
               "&:hover": {
                 textDecoration: "underline",
+              },
+              [theme.breakpoints.down("md")]: {
+                fontSize: ".6rem",
               },
             })}
           >
