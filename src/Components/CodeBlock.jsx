@@ -1,15 +1,21 @@
-import { theme } from "@/app/theme";
-import { CheckCircle, ContentCopy } from "@mui/icons-material";
-import { Box, Button, Typography, styled } from "@mui/material";
+import { ContentCopy } from "@mui/icons-material";
+import { Box, Typography, styled } from "@mui/material";
+import cypher from "highlightjs-cypher";
 import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-// import CopyToClipboard from "react-copy-to-clipboard";
-import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
-import { atomOneLight, dracula, github } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
+import { atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+import { sql } from "react-syntax-highlighter/dist/esm/languages/hljs";
+
+SyntaxHighlighter.registerLanguage("cypher", cypher);
+SyntaxHighlighter.registerLanguage("sql", sql);
 
 const CopyToClipboardStyled = styled(CopyToClipboard)({});
 
 export default function CodeBlock({ code, language }) {
+  console.log({ language });
   const [copied, setCopied] = useState(false);
 
   const copy = () => {
@@ -75,7 +81,7 @@ export default function CodeBlock({ code, language }) {
                   // basis: "1/4",
                   "&:hover": {
                     cursor: "pointer",
-                    opacity: .7,
+                    opacity: 0.7,
                   },
                 })}
               />

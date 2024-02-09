@@ -100,7 +100,7 @@ export const easierNaturalData = [
   {
     titleGraph: "1. Create User Nodes",
     titleRDBMS: "1. Create a User Table and Insert Data",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `CREATE (:User {id: 1, name: 'Alice'})
 CREATE (:User {id: 2, name: 'Bob'})
@@ -123,7 +123,7 @@ INSERT INTO Users (id, name) VALUES (1, 'Alice'), (2, 'Bob'), (3, 'Charlie'), (4
   {
     titleGraph: "2. Add friend relationships",
     titleRDBMS: "2. Create a Friend Relationship Table",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `MATCH (alice:User {name: 'Alice'}), (bob:User {name: 'Bob'})
 CREATE (alice)-[:FRIENDS]->(bob)
@@ -153,16 +153,16 @@ INSERT INTO Friends (user_id1, user_name1, user_id2, user_name2) VALUES
   (3, 'Charlie', 4, 'David');`,
     descGraph:
       "This is the query to create a friend relationship between user nodes. Each MATCH is used to find nodes with certain conditions, and then CREATE is used to create an edge with the label FRIENDS connecting the two user nodes.",
-    imageCodeGraph: "/",
+    imageCodeGraph: null,
     descRDBMS:
       "This is a query to create a Friends table with four columns: two pairs of user_id and user_name to represent the two users who are friends, and two FOREIGN KEYS that refer to the id column in the Users table. In addition, there is a composite PRIMARY KEY of the two columns user_id1 and user_id2. Then, there is a query to insert data into the Friends table. Four rows of data are inserted with pairs of users who are friends.",
-    imageCodeRDBMS: "/",
+    imageCodeRDBMS: null,
   },
 
   {
     titleGraph: "3. Show Data",
     titleRDBMS: "3. Return Data",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `MATCH (n) RETURN n`,
     rdbmsCode: `SELECT * FROM Friends;`,
@@ -206,7 +206,7 @@ export const schemaFlexData = [
   {
     titleGraph: "Add a New Property",
     titleRDBMS: "Add a New Property",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `// Add a new property (e.g. 'email') to the user node
 MATCH (user:User {name: 'Alice'})
@@ -228,7 +228,7 @@ WHERE name = 'Alice';`,
   {
     titleGraph: "Add a New Relationship",
     titleRDBMS: "Add a New Relationship",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `// Add a new realtionship 'LIKES' between users
 MATCH (alice:User {name: 'Alice'}), (bob:User {name: 'Bob'})
@@ -259,7 +259,7 @@ export const graphSearchAnalysis = [
   {
     titleGraph: "Find the Shortest Path",
     titleRDBMS: "Find the Shortest Path",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `MATCH path = shortestPath((alice:User {name: 'Alice'})-[:FRIENDS*]-(david:User {name: 'David'}))
 RETURN path`,
@@ -277,12 +277,13 @@ WHERE u1.name = 'Alice'
     descRDBMS:
       "• This SQL query uses a combination of multiple WHERE conditions to find the shortest path, which can make the query structure more complex and difficult to interpret, thus requiring longer execution time especially at large scale.",
     imageCodeRDBMS: "/graph_search_1.png",
+    showTable: false,
   },
 
   {
     titleGraph: "Find Interconnected Nodes",
     titleRDBMS: "Find Interconnected Nodes",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `MATCH (charlie:User {name: 'Charlie'})-[:FRIENDS]->(commonFriend)<-[:FRIENDS]-(bob:User {name: 'Bob'})
 RETURN commonFriend`,
@@ -301,7 +302,8 @@ WHERE u1.name = 'Bob'
     imageCodeGraph: "/graph_search_3.png",
     descRDBMS:
       "• These SQL queries use a combination of JOIN and complex WHERE conditions, which can result in queries that are more difficult to understand and manage.",
-    imageCodeRDBMS: "/",
+    imageCodeRDBMS: null,
+    showTable: true,
   },
 ];
 
@@ -309,7 +311,7 @@ export const efficiencyQuery = [
   {
     titleGraph: "Find All Connected Nodes",
     titleRDBMS: "Find the Shortest Path",
-    languageGraph: "Cypher",
+    languageGraph: "cypher",
     languageRDBMS: "SQL",
     graphCode: `MATCH (friend)-[:FRIENDS]->(david:User {name: 'David'})
 RETURN friend`,
