@@ -641,7 +641,7 @@ export default function Homepage() {
                 chain.
               </Typography>
               <Button
-              href="/pages/recommendationengine"
+                href="/pages/recommendationengine"
                 sx={(theme) => ({
                   display: "flex",
                   gap: "10px",
@@ -689,7 +689,7 @@ export default function Homepage() {
           </Stack>
         </Box>
       </Container>
-      <Container
+      {/* <Container
         variant="section"
         sx={(theme) => ({
           marginTop: "113px",
@@ -834,8 +834,8 @@ export default function Homepage() {
             </Typography>
           </Links>
         </Stack>
-      </Container>
-      <Footer />
+      </Container> */}
+      {/* <Footer /> */}
     </Box>
   );
 }

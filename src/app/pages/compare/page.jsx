@@ -77,6 +77,10 @@ export default function ComparePages() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -152,40 +156,37 @@ export default function ComparePages() {
         <Box sx={{ width: "100%" }}>
           <Box
             sx={{
-              border: "none",
-              padding: "8px",
-              backgroundColor: "blueTeritary",
-              borderRadius: "16px",
-              margin: "0 auto",
-              // position: "fixed",
-              width: "100%",
+              position: "sticky",
               top: "0",
-              zIndex: 9999,
-              // position: "fixed",
-              // zIndex: "990",
+              zIndex: 10,
+              paddingBlock: "2rem",
+              backgroundColor: "primary.main",
             }}
           >
             <Tabs
               value={value}
               onChange={handleChange}
               variant="scrollable"
-              scrollButtons
+              // scrollButtons
               allowScrollButtonsMobile
               aria-label="Compare Tabs"
               sx={(theme) => ({
+                border: "none",
+                padding: "8px",
+                backgroundColor: "blueTeritary",
+                borderRadius: "16px",
+                margin: "0 auto",
+
+                width: "100%",
+
+                // isolation: "isolate",
+
+                // position: "fixed",
+                // zIndex: "990",
                 // margin: "0 auto",
                 "& .MuiTabs-indicator": {
                   display: "none",
                 },
-                [theme.breakpoints.up("md")]: {
-                  "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled": {
-                    display: "none",
-                  }
-                }
-                // "& .MuiTabs-flexContainer": {
-                //   justifyContent: "center",
-                // },
-                // padding: "8px",
               })}
             >
               {tabTitle.map((item, idx) => {
@@ -262,12 +263,14 @@ export default function ComparePages() {
                         {item.descGraph}
                       </Typography>
                       <Box sx={{ marginTop: "25px" }}>
-                        <Images
-                          sx={{ marginTop: "25px", margin: "0 auto" }}
-                          src={item.imageCodeGraph}
-                          width={421}
-                          height={273}
-                        />
+                        {item.imageCodeGraph ? (
+                          <Images
+                            sx={{ marginTop: "25px", margin: "0 auto" }}
+                            src={item.imageCodeGraph}
+                            width={421}
+                            height={273}
+                          />
+                        ) : null}
                       </Box>
                     </Grid>
                     <Grid
@@ -292,12 +295,14 @@ export default function ComparePages() {
                         {item.descRDBMS}
                       </Typography>
                       <Box sx={{ marginTop: "25px" }}>
-                        <Images
-                          sx={{ margin: "0 auto" }}
-                          src={item.imageCodeRDBMS}
-                          width={473}
-                          height={273}
-                        />
+                        {item.imageCodeRDBMS ? (
+                          <Images
+                            sx={{ margin: "0 auto" }}
+                            src={item.imageCodeRDBMS}
+                            width={473}
+                            height={273}
+                          />
+                        ) : null}
                       </Box>
                     </Grid>
                   </Grid>
@@ -547,12 +552,14 @@ export default function ComparePages() {
                         language={item.languageGraph}
                       ></CodeBlock>
                       <Box sx={{ marginBottom: "25px" }}>
-                        <Images
-                          sx={{ marginTop: "25px", margin: "0 auto" }}
-                          src={item.imageCodeGraph}
-                          width={421}
-                          height={190}
-                        />
+                        {item.imageCodeGraph ? (
+                          <Images
+                            sx={{ marginTop: "25px", margin: "0 auto" }}
+                            src={item.imageCodeGraph}
+                            width={421}
+                            height={190}
+                          />
+                        ) : null}
                       </Box>
                       <Typography variant="tabContentSubtitle">
                         {item.descGraph1}
@@ -580,49 +587,53 @@ export default function ComparePages() {
                         language={item.languageRDBMS}
                       ></CodeBlock>
                       <Box sx={{ marginBottom: "25px" }}>
-                        <Images
-                          sx={{ margin: "0 auto" }}
-                          src={item.imageCodeRDBMS}
-                          width={500}
-                          height={200}
-                        />
+                        {item.imageCodeRDBMS ? (
+                          <Images
+                            sx={{ margin: "0 auto" }}
+                            src={item.imageCodeRDBMS}
+                            width={500}
+                            height={200}
+                          />
+                        ) : null}
                       </Box>
-                      <TableContainer
-                        sx={{
-                          width: "fit-content",
-                          borderRadius: "5px",
-                          margin: "0 auto",
-                          marginBottom: "15px",
-                        }}
-                      >
-                        <Table
-                          sx={{ width: "200px", borderRadius: "20px" }}
-                          aria-label="table-code"
+                      {item.showTable ? (
+                        <TableContainer
+                          sx={{
+                            width: "fit-content",
+                            borderRadius: "5px",
+                            margin: "0 auto",
+                            marginBottom: "15px",
+                          }}
                         >
-                          <TableBody>
-                            <TableRow>
-                              <TableCell
-                                sx={{
-                                  border: "solid 2px grey",
-                                  padding: "10px",
-                                }}
-                              >
-                                commonFriend
-                              </TableCell>
-                            </TableRow>
-                            <TableRow>
-                              <TableCell
-                                sx={{
-                                  border: "solid 2px grey",
-                                  padding: "10px",
-                                }}
-                              >
-                                David
-                              </TableCell>
-                            </TableRow>
-                          </TableBody>
-                        </Table>
-                      </TableContainer>
+                          <Table
+                            sx={{ width: "200px", borderRadius: "20px" }}
+                            aria-label="table-code"
+                          >
+                            <TableBody>
+                              <TableRow>
+                                <TableCell
+                                  sx={{
+                                    border: "solid 2px grey",
+                                    padding: "10px",
+                                  }}
+                                >
+                                  commonFriend
+                                </TableCell>
+                              </TableRow>
+                              <TableRow>
+                                <TableCell
+                                  sx={{
+                                    border: "solid 2px grey",
+                                    padding: "10px",
+                                  }}
+                                >
+                                  David
+                                </TableCell>
+                              </TableRow>
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      ) : null}
                       <Typography variant="tabContentSubtitle">
                         {item.descRDBMS}
                       </Typography>
@@ -871,7 +882,6 @@ export default function ComparePages() {
         </Box>
         {/* <StickyHeader></StickyHeader> */}
       </Container>
-      <Footer />
     </>
   );
 }

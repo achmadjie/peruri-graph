@@ -84,6 +84,7 @@ export default function Navbar(props) {
         position="static"
       >
         <Container
+          id="back-to-top-anchor"
           component="nav"
           maxWidth="xl"
           sx={{
