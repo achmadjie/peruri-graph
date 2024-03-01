@@ -10,6 +10,9 @@ import {
   InsertChart,
   Timeline,
 } from "@mui/icons-material";
+import { Typography, styled } from "@mui/material";
+
+const Code = styled(`code`)({});
 
 export const CardHomeData = [
   {
@@ -96,6 +99,12 @@ export const tabTitle = [
   "Efficient Query",
 ];
 
+export const tabTitleRecommen = [
+  "Introduction",
+  "Data Preparation",
+  "Recommendation and Result",
+];
+
 export const easierNaturalData = [
   {
     titleGraph: "1. Create User Nodes",
@@ -178,11 +187,23 @@ INSERT INTO Friends (user_id1, user_name1, user_id2, user_name2) VALUES
 export const summaryEasierNaturalData = [
   {
     title: "• Intuitive Query Structure",
-    desc1: `• In Cypher queries, the creation and management of friend
-  relationships is done with clear and easy-to-understand
-  syntax. For example, **CREATE (alice)-[:FRIENDS]-&gt;(bob)**
-  clearly states that Alice and Bob have a friend
-  relationship.`,
+    desc1: (
+      <Typography variant="summaryDesc">
+        • In Cypher queries, the creation and management of friend relationships
+        is done with clear and easy-to-understand syntax. For example,{" "}
+        <Code
+          lang="cypher"
+          sx={{
+            backgroundColor: "grey.main",
+            padding: "4px 7px",
+            borderRadius: "5px",
+          }}
+        >
+          CREATE (alice)-[:FRIENDS]-&gt;(bob)
+        </Code>{" "}
+        clearly states that Alice and Bob have a friend relationship.
+      </Typography>
+    ),
     desc2: `• In comparison, in SQL, the representation of friend
   relationships requires separate tables and JOIN operations,
   which may be less intuitive for simple relationship cases.`,
@@ -204,7 +225,7 @@ export const summaryEasierNaturalData = [
 
 export const schemaFlexData = [
   {
-    titleGraph: "Add a New Property",
+    titleGraph: "Add New Property",
     titleRDBMS: "Add a New Property",
     languageGraph: "cypher",
     languageRDBMS: "SQL",

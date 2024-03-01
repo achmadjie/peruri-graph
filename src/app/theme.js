@@ -77,6 +77,9 @@ export const theme = createTheme({
           summaryTitle: "h1",
           summarySubTitle: "p",
           summaryDesc: "p",
+          span: "span",
+          navTitle: "h1",
+          navSubtitle: "p",
         },
       },
     },
@@ -220,11 +223,21 @@ export const theme = createTheme({
       fontWeight: 500,
       color: colors.navbarFontColor,
     },
+    navTitle: {
+      fontSize: "clamp(0.63rem, 0.45vw + 0.51rem, 0.88rem)",
+      fontWeight: 700,
+      color: colors.bluePrimary,
+    },
+    navSubtitle: {
+      fontSize: "clamp(0.63rem, 0.45vw + 0.51rem, 0.88rem)",
+      fontWeight: 500,
+      color: colors.grey2,
+    },
   },
 });
 
-// --font-size-xs: clamp(0.2rem, 0.16vw + 0.16rem, 0.32rem);
-// --font-size-sm: clamp(0.26rem, 0.24vw + 0.19rem, 0.42rem);
-// --font-size-md: clamp(0.32rem, 0.35vw + 0.23rem, 0.56rem);
-// --font-size-lg: clamp(0.4rem, 0.51vw + 0.26rem, 0.75rem);
-// --font-size-xl: clamp(0.5rem, 0.72vw + 0.31rem, 1rem);
+// --fs-xs: clamp(0.26rem, 0.04vw + 0.25rem, 0.28rem);
+// --fs-sm: clamp(0.32rem, 0.09vw + 0.3rem, 0.37rem);
+// --fs-md: clamp(0.4rem, 0.17vw + 0.36rem, 0.49rem);
+// --fs-lg: clamp(0.5rem, 0.28vw + 0.43rem, 0.66rem);
+// --fs-xl: clamp(0.63rem, 0.45vw + 0.51rem, 0.88rem);

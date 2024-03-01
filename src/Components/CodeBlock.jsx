@@ -15,7 +15,7 @@ SyntaxHighlighter.registerLanguage("sql", sql);
 const CopyToClipboardStyled = styled(CopyToClipboard)({});
 
 export default function CodeBlock({ code, language }) {
-  console.log({ language });
+  // console.log({ language });
   const [copied, setCopied] = useState(false);
 
   const copy = () => {

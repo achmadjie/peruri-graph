@@ -3,10 +3,30 @@
 import { useState } from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import Footer from "@/Components/footer/Footer";
-import { Box, Container, Divider, Paper, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  Grid,
+  Paper,
+  Tab,
+  Tabs,
+  Typography,
+  styled,
+} from "@mui/material";
 import HomeBanner from "../../../../public/abstract/HomeBanner";
-import { CardRecommendationEngineData } from "@/app/MappingData";
+import {
+  CardRecommendationEngineData,
+  easierNaturalData,
+  efficiencyQuery,
+  efficiencyQueryDescGraph,
+  efficiencyQueryDescRDBMS,
+  schemaFlexData,
+  summaryEasierNaturalData,
+  tabTitle,
+  tabTitleRecommen,
+} from "@/app/MappingData";
+import CodeBlock from "@/Components/CodeBlock";
 
 const Images = styled(Image)({});
 
@@ -19,7 +39,7 @@ function CustomTabPanel(props) {
   };
 
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -27,7 +47,7 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
+    </Box>
   );
 }
 
@@ -88,9 +108,12 @@ export default function RecommendationEnginePage() {
           })}
         >
           <HomeBanner />
-          <Box flex={2} sx={(theme) => ({
-            width: "fit-content",
-          })}>
+          <Box
+            flex={2}
+            sx={(theme) => ({
+              width: "fit-content",
+            })}
+          >
             <Typography
               variant="title"
               // position={"absolute"}
@@ -221,7 +244,6 @@ export default function RecommendationEnginePage() {
                 })}
               />
             </Box>
-            
           </Box>
           <Box
             sx={(theme) => ({
@@ -276,7 +298,6 @@ export default function RecommendationEnginePage() {
                         },
                       })}
                     />
-                    
                   </Box>
                   <Typography
                     variant="cardSubTitle"
@@ -293,6 +314,89 @@ export default function RecommendationEnginePage() {
               );
             })}
           </Box>
+        </Box>
+        <Box sx={{ width: "100%" }}>
+          <Box
+            sx={{
+              position: "sticky",
+              top: "0",
+              zIndex: 10,
+              paddingBlock: "2rem",
+              backgroundColor: "primary.main",
+            }}
+          >
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              // scrollButtons
+              allowScrollButtonsMobile
+              aria-label="Compare Tabs"
+              sx={(theme) => ({
+                border: "none",
+                padding: "8px",
+                backgroundColor: "blueTeritary",
+                borderRadius: "16px",
+                margin: "0 auto",
+                width: "100%",
+                // isolation: "isolate",
+                // position: "fixed",
+                // zIndex: "990",
+                // margin: "0 auto",
+                "& .MuiTabs-indicator": {
+                  display: "none",
+                },
+              })}
+            >
+              {tabTitleRecommen.map((item, idx) => {
+                return (
+                  <Tab
+                    key={idx}
+                    label={item}
+                    sx={{
+                      flex: 1,
+                      fontSize: "clamp(0.5rem, 0.72vw + 0.31rem, 1rem)",
+                    }}
+                    {...a11yProps(idx)}
+                  />
+                );
+              })}
+            </Tabs>
+          </Box>
+          <CustomTabPanel value={value} index={0}>
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container>
+                <Grid item xs={10}>
+                  <Paper>xs=8</Paper>
+                </Grid>
+                <Grid item xs={2} sx={{ paddingLeft: "40px" }}>
+                  <Box maxWidth="200px">
+                    <Typography variant="navTitle">On This Page</Typography>
+                    <Box>
+                      <Typography variant="navSubtitle">Dataset</Typography>
+                      <Typography
+                        variant="navSubtitle"
+                        sx={{ paddingLeft: "10px" }}
+                      >
+                        Nodes
+                      </Typography>
+                      <Typography
+                        variant="navSubtitle"
+                        sx={{ paddingLeft: "10px" }}
+                      >
+                        Relationships
+                      </Typography>
+                      <Typography variant="navSubtitle">
+                        Nodes and Relationships in Northwind Graph
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}></CustomTabPanel>
+          <CustomTabPanel value={value} index={2}></CustomTabPanel>
         </Box>
       </Container>
     </Box>

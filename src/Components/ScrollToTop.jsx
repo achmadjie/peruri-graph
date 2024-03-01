@@ -13,7 +13,7 @@ export default function ScrollTop(props) {
     threshold: 100,
   });
 
-  console.log({ trigger });
+  // console.log({ trigger });
 
   const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector(
@@ -35,7 +35,7 @@ export default function ScrollTop(props) {
         role="presentation"
         sx={{ position: "fixed", bottom: 16, right: 16 }}
       >
-        <Button>Test</Button>
+        <Button>Back to Top</Button>
       </Box>
     </Fade>
   );
