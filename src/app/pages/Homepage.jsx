@@ -10,14 +10,14 @@ import {
   Container,
   Stack,
 } from "@mui/material";
-import React from "react";
 import HomeBanner from "../../../public/abstract/HomeBanner";
 import Image from "next/image";
 import { CardHomeData, contactData, useCaseData } from "../MappingData";
 import { theme } from "../theme";
 import { ArrowCircleRightRounded, WhatsApp } from "@mui/icons-material";
-import Link from "next/link;
+import Link from "next/link";
 import Footer from "@/Components/footer/Footer";
+// import Footer from "@/Components/footer/Footer";
 
 const Images = styled(Image)({});
 const Links = styled(Link)({});
@@ -163,7 +163,7 @@ export default function Homepage() {
           >
             <Box
               sx={(theme) => ({
-                display: "flex",
+                // display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 gap: "35px",
@@ -176,8 +176,9 @@ export default function Homepage() {
               <Divider
                 sx={(theme) => ({
                   maxWidth: "80px",
+                  margin: "0 auto",
                   backgroundColor: "bluePrimary",
-                  borderBottomWidth: "3px",
+                  borderBottomWidth: "4px",
                   borderRadius: "30px",
                 })}
               />
@@ -185,6 +186,7 @@ export default function Homepage() {
             <Typography
               variant="sectionSubTitle"
               sx={(theme) => ({
+                marginTop: "35px",
                 [theme.breakpoints.down("md")]: {
                   lineHeight: "20px",
                   fontSize: "10px",
@@ -359,12 +361,13 @@ export default function Homepage() {
               nisi ut aliquip ex ea commodo consequat.
             </Typography>
             <Button
+              href="/pages/compare"
               variant="contained"
               sx={(theme) => ({
                 // width: "fit-content",
                 // height: "fit-content",
                 marginTop: "20px",
-                padding: "5px 12px",
+                padding: "10px 25px",
                 borderRadius: "25px",
                 color: "bluePrimary",
                 // position: "absolute",
@@ -377,7 +380,7 @@ export default function Homepage() {
                 },
                 [theme.breakpoints.down("md")]: {
                   marginTop: "25px",
-                  padding: "12px 70px",
+                  padding: "10px 50px",
                   fontSize: "13px",
                 },
               })}
@@ -441,7 +444,7 @@ export default function Homepage() {
         >
           <Box
             sx={(theme) => ({
-              display: "flex",
+              // display: "flex",
               flexDirection: "column",
               alignItems: "center",
               gap: "35px",
@@ -454,9 +457,12 @@ export default function Homepage() {
             <Divider
               sx={(theme) => ({
                 maxWidth: "80px",
+                // marginBottom: "35px",
                 backgroundColor: "bluePrimary",
-                borderBottomWidth: "3px",
+                borderBottomWidth: "4px",
                 borderRadius: "30px",
+                margin: "0 auto",
+                marginBottom: "35px",
               })}
             />
           </Box>
@@ -635,6 +641,7 @@ export default function Homepage() {
                 chain.
               </Typography>
               <Button
+                href="/pages/recommendationengine"
                 sx={(theme) => ({
                   display: "flex",
                   gap: "10px",
@@ -682,7 +689,7 @@ export default function Homepage() {
           </Stack>
         </Box>
       </Container>
-      <Container
+      {/* <Container
         variant="section"
         sx={(theme) => ({
           marginTop: "113px",
@@ -695,22 +702,25 @@ export default function Homepage() {
       >
         <Box
           sx={(theme) => ({
-            display: "flex",
+            // display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: "35px",
+            
             [theme.breakpoints.down("md")]: {
               gap: "25px",
             },
           })}
         >
-          <Typography variant="sectionTitle">Contact</Typography>
+          <Typography variant="sectionTitle" textAlign="center">Contact</Typography>
           <Divider
             sx={(theme) => ({
               maxWidth: "80px",
               backgroundColor: "bluePrimary",
-              borderBottomWidth: "3px",
+              borderBottomWidth: "4px",
               borderRadius: "30px",
+              margin: "0 auto",
+              marginBottom: "35px",
             })}
           />
         </Box>
@@ -824,8 +834,8 @@ export default function Homepage() {
             </Typography>
           </Links>
         </Stack>
-      </Container>
-      <Footer />
+      </Container> */}
+      {/* <Footer /> */}
     </Box>
   );
 }
