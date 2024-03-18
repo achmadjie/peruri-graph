@@ -4,7 +4,6 @@ import CodeBlock from "@/Components/CodeBlock";
 import {
   easierNaturalData,
   efficiencyQuery,
-  efficiencyQueryDesc,
   efficiencyQueryDescGraph,
   efficiencyQueryDescRDBMS,
   graphSearchAnalysis,
@@ -17,8 +16,6 @@ import {
   Container,
   Divider,
   Grid,
-  Paper,
-  Stack,
   Tab,
   Table,
   TableBody,
@@ -32,18 +29,11 @@ import {
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { useState } from "react";
-// import StickyTabs from "@/Components/StickyTabs";
-// import StickyHeader from "@/Components/StickyHeader";
 
 const Images = styled(Image)({});
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
-  // const [scrollValue, setScrollValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <div
@@ -175,10 +165,6 @@ export default function ComparePages() {
               borderRadius: "16px",
               margin: "0 auto",
               width: "100%",
-              // isolation: "isolate",
-              // position: "fixed",
-              // zIndex: "990",
-              // margin: "0 auto",
               "& .MuiTabs-indicator": {
                 display: "none",
               },
@@ -447,7 +433,7 @@ export default function ComparePages() {
                     <CodeBlock
                       code={item.rdbmsCode}
                       language={item.languageRDBMS}
-                    ></CodeBlock>
+                    />
                     <Typography variant="tabContentSubtitle">
                       {item.descRDBMS}
                     </Typography>
@@ -873,7 +859,6 @@ export default function ComparePages() {
           </Box>
         </CustomTabPanel>
       </Box>
-      {/* <StickyHeader></StickyHeader> */}
     </Container>
   );
 }

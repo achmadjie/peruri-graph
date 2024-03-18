@@ -8,6 +8,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-padding-top: 125px;
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */

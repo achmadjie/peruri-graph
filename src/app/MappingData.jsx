@@ -408,3 +408,198 @@ export const CardRecommendationEngineData = [
     subTitle: "See a sample graph data model",
   },
 ];
+
+export const customerList = [
+  {
+    title: "• customerID",
+    desc: ": A unique identification for each customer in the dataset. It is a string used to distinguish one customer from another.",
+  },
+  {
+    title: "• companyName",
+    desc: ": The name of the company or business entity of the customer. This property provides information about the legal entity that made the transaction or purchase.",
+  },
+  {
+    title: "• contactName",
+    desc: ": The name of the contact associated with the customer. This is the name of the person who is responsible for or has a relationship with the business transaction.",
+  },
+  {
+    title: "• contactTitle",
+    desc: ": The title or position held by the customer contact. It provides additional context about the contact's role or responsibilities within the company.",
+  },
+  {
+    title: "• address",
+    desc: ": The physical address or office of the customer",
+  },
+  {
+    title: "• city",
+    desc: ": The name of the city where the customer is located.",
+  },
+  {
+    title: "• country",
+    desc: ": The country where the customer is located.",
+  },
+  {
+    title: "• region",
+    desc: ": A specific region or part of the country where the customer is located.",
+  },
+  {
+    title: "• postalCode",
+    desc: ": The zip code or postal code associated with the customer's address.",
+  },
+  {
+    title: "• phone",
+    desc: ": The phone number that can be used to contact the customer.",
+  },
+  {
+    title: "• fax",
+    desc: ": The fax number associated with the customer.",
+  },
+];
+
+export const orderList = [
+  {
+    title: "• orderID",
+    desc: ": Unique identification for each order.",
+  },
+  {
+    title: "• customerID",
+    desc: ": The unique identification of the customer who placed the order. It is a foreign key that can be used to link the Order node with the Customer node.",
+  },
+  {
+    title: "• freight",
+    desc: ": The shipping cost or freight cost of the order.",
+  },
+  {
+    title: "• orderDate",
+    desc: ": The date when the order was placed.",
+  },
+  {
+    title: "• requiredDate",
+    desc: ": The shipping address of the order.",
+  },
+  {
+    title: "• shipAddress",
+    desc: ": The name of the city where the customer is located.",
+  },
+  {
+    title: "• shipCity",
+    desc: ": The destination city of the order.",
+  },
+  {
+    title: "• shipCountry",
+    desc: ":  The country to which the order is destined.",
+  },
+  {
+    title: "• shipName",
+    desc: ": The name of the order recipient.",
+  },
+  {
+    title: "• shipPostalCode",
+    desc: ": The postal code of the order destination.",
+  },
+  {
+    title: "• shipRegion",
+    desc: ": The region or specific part of the country the order is destined for.",
+  },
+  {
+    title: "• shipVia",
+    desc: ": The shipping method or third party responsible for shipping the order.",
+  },
+  {
+    title: "• shippedDate",
+    desc: ": The date when the order was actually shipped.",
+  },
+];
+
+export const productList = [
+  {
+    title: "• productID",
+    desc: ": Unique identification for each product in the dataset.",
+  },
+  {
+    title: "• productName",
+    desc: ": Product name that provides information about the product type or brand.",
+  },
+  {
+    title: "• categoryID",
+    desc: ": A unique identification for the product category. This can be a foreign key that links the product with the Category node.",
+  },
+  {
+    title: "• quantityPerUnit",
+    desc: ": The quantity of the product in one packaging unit or one item. It provides information about how the product is sold or packaged.",
+  },
+  {
+    title: "• unitPrice",
+    desc: ": The price per unit of the product. It reflects the selling price of one unit of the product.",
+  },
+  {
+    title: "• unitsInStock",
+    desc: ": The number of product units available in stock at any given moment.",
+  },
+  {
+    title: "• unitsOnOrder",
+    desc: ": The number of units of a product that have been ordered by a customer but are not yet in stock.",
+  },
+  {
+    title: "• reorderLevel",
+    desc: ":  The minimum stock level that will trigger a product reorder.",
+  },
+  {
+    title: "• discontinued",
+    desc: ": A status that indicates whether the product has been discontinued or is still actively on sale. This can be a boolean value (true/false).",
+  },
+];
+
+export const categoryList = [
+  {
+    title: "• categoryID",
+    desc: ": Unique identification for each product category in the dataset.",
+  },
+  {
+    title: "• categoryName",
+    desc: ": The name of the category that provides information about the types of products included in the category.",
+  },
+  {
+    title: "• description",
+    desc: ": A short description that provides additional information about the type of product or characteristic of the category.",
+  },
+  {
+    title: "• picture",
+    desc: ":  Contains image data representing the category that has been encrypted in base64 format.",
+  },
+];
+
+export const relationshipList = [
+  {
+    title: "• PURCHASED",
+    titleCode: "cypher",
+    code: "(customer)-[:PURCHASED]->(order)",
+    exampleTitle: "An example of using the ",
+    exampleTitleLast: "relation:",
+    importantSubtitle: "PURCHASED",
+    subTitle:
+      "relation can be used to describe the relationship between a Customer node and an Order node. For example, if a customer purchases a particular product, you can use the PURCHASED relation to connect the Customer node with the Order node, indicating that the customer has made a purchase or order.",
+  },
+
+  {
+    title: "• ORDERS",
+    titleCode: "cypher",
+    code: "(order)-[:ORDERS]->(product)",
+    exampleTitle: "An example of using the ",
+    exampleTitleLast: "relation:",
+    importantSubtitle: "ORDERS",
+    subTitle:
+      "relation can be used to describe the relationship between the Order node and the Product node. It reflects that within an order, there are certain products ordered or purchased by the customer.",
+  },
+
+  {
+    title: "• PART_OF",
+    titleCode: "cypher",
+    code: "(product)-[:PART_OF]->(category)",
+    exampleTitle: "An example of using the ",
+    exampleTitleLast: "relation:",
+    importantSubtitle: "PART_OF",
+    subTitle:
+      "relation can be used to describe the relationship between a Product node and a Category node. If a product belongs to a category, the relation can be used to show the relationship between the product and the category.",
+  },
+];

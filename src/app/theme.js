@@ -80,6 +80,8 @@ export const theme = createTheme({
           span: "span",
           navTitle: "h1",
           navSubtitle: "p",
+          bulletTitle: "h1",
+          bulletSubtitle: "p",
         },
       },
     },
@@ -141,6 +143,7 @@ export const theme = createTheme({
       },
     },
   },
+
   palette: {
     ...colors,
   },
@@ -195,6 +198,7 @@ export const theme = createTheme({
       fontSize: "clamp(0.88rem, 1.63vw + 0.44rem, 2rem)",
       fontWeight: 700,
       color: colors.bluePrimary,
+      textAlign: "justify",
     },
     tabContentTitle: {
       fontSize: "clamp(0.75rem, 0.72vw + 0.56rem, 1.25rem)",
@@ -206,6 +210,24 @@ export const theme = createTheme({
       color: colors.navbarFontColor,
       textAlign: "justify",
       fontWeight: 400,
+    },
+    sideNavSubtitle: {
+      fontSize: "clamp(0.63rem, 0.45vw + 0.5rem, 0.94rem)",
+      color: colors.navbarFontColor,
+      textAlign: "justify",
+      fontWeight: 400,
+    },
+    bulletTitle: {
+      color: colors.bluePrimary,
+      // fontfamily: "Poppins",
+      fontSize: "clamp(0.63rem, 0.54vw + 0.48rem, 1rem)",
+      fontWeight: 700,
+    },
+    bulletSubtitle: {
+      fontSize: "clamp(0.63rem, 0.36vw + 0.53rem, 0.88rem)",
+      color: colors.navbarFontColor,
+      fontWeight: 400,
+      textAlign: "justify",
     },
     summaryTitle: {
       fontSize: "clamp(0.81rem, 0.99vw + 0.55rem, 1.5rem)",
@@ -236,8 +258,8 @@ export const theme = createTheme({
   },
 });
 
-// --fs-xs: clamp(0.26rem, 0.04vw + 0.25rem, 0.28rem);
-// --fs-sm: clamp(0.32rem, 0.09vw + 0.3rem, 0.37rem);
-// --fs-md: clamp(0.4rem, 0.17vw + 0.36rem, 0.49rem);
-// --fs-lg: clamp(0.5rem, 0.28vw + 0.43rem, 0.66rem);
-// --fs-xl: clamp(0.63rem, 0.45vw + 0.51rem, 0.88rem);
+// --fs-xs: clamp(0.26rem, 0.06vw + 0.24rem, 0.3rem);
+// --fs-sm: clamp(0.32rem, 0.11vw + 0.29rem, 0.4rem);
+// --fs-md: clamp(0.4rem, 0.18vw + 0.35rem, 0.53rem);
+// --fs-lg: clamp(0.5rem, 0.29vw + 0.42rem, 0.7rem);
+// --fs-xl: clamp(0.63rem, 0.45vw + 0.5rem, 0.94rem);

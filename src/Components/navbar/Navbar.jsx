@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { Slide, styled, useScrollTrigger } from "@mui/material";
 import { theme } from "@/app/theme";
-import HideScroll from "../footer/Footer";
+// import HideScroll from "../footer/Footer";
 import PropTypes from "prop-types";
 
 const pages = [
@@ -74,9 +74,11 @@ export default function Navbar(props) {
   return (
     <ElevationScroll {...props}>
       <AppBar
+        // position="sticky"
         sx={(theme) => ({
           backgroundColor: "primary.main",
           marginBottom: "64px",
+
           [theme.breakpoints.down("md")]: {
             marginBottom: 0,
           },

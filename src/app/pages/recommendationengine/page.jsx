@@ -8,7 +8,11 @@ import {
   Container,
   Divider,
   Grid,
+  List,
+  ListItem,
+  ListItemText,
   Paper,
+  Stack,
   Tab,
   Tabs,
   Typography,
@@ -17,18 +21,34 @@ import {
 import HomeBanner from "../../../../public/abstract/HomeBanner";
 import {
   CardRecommendationEngineData,
+  categoryList,
+  customerList,
   easierNaturalData,
   efficiencyQuery,
   efficiencyQueryDescGraph,
   efficiencyQueryDescRDBMS,
+  orderList,
+  productList,
+  relationshipList,
   schemaFlexData,
   summaryEasierNaturalData,
   tabTitle,
   tabTitleRecommen,
 } from "@/app/MappingData";
+// import CodeBlock from "@/Components/CodeBlock";
+import ScrollSpy from "react-ui-scrollspy";
+import Link from "next/link";
 import CodeBlock from "@/Components/CodeBlock";
 
 const Images = styled(Image)({});
+const Links = styled(Link)({});
+const importantText = styled(Typography)({
+  fontWeight: 400,
+  color: "bluePrimary",
+  fontSize: "tabSubtitle",
+});
+const ScrollSpyMUI = styled(ScrollSpy)({});
+const CodeBlockStyle = styled(CodeBlock)({});
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +66,9 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box sx={{ p: 3, position: "relative" }}>{children}</Box>
+      )}
     </Box>
   );
 }
@@ -330,7 +352,7 @@ export default function RecommendationEnginePage() {
               onChange={handleChange}
               variant="scrollable"
               // scrollButtons
-              allowScrollButtonsMobile
+              // allowScrollButtonsMobile
               aria-label="Compare Tabs"
               sx={(theme) => ({
                 border: "none",
@@ -364,35 +386,462 @@ export default function RecommendationEnginePage() {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container>
-                <Grid item xs={10}>
-                  <Paper>xs=8</Paper>
-                </Grid>
-                <Grid item xs={2} sx={{ paddingLeft: "40px" }}>
-                  <Box maxWidth="200px">
-                    <Typography variant="navTitle">On This Page</Typography>
-                    <Box>
-                      <Typography variant="navSubtitle">Dataset</Typography>
+            <Box
+              sx={{
+                flexGrow: 1,
+                // gap: "60px",
+                // padding: 0,
+                // position: "sticky",
+              }}
+            >
+              <Stack
+                sx={(theme) => ({
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  gap: "50px",
+                })}
+              >
+                <Box
+                  component="nav"
+                  sx={{
+                    height: "fit-content",
+                    width: "600px",
+                    position: "sticky",
+                    top: "130px",
+                    right: "30px",
+                    fontSize: "14px",
+                  }}
+                >
+                  <Typography variant="navTitle">On This Page</Typography>
+                  <Box>
+                    <Links href="#dataset" sx={{ textDecoration: "unset" }}>
+                      <Typography
+                        variant="navSubtitle"
+                        data-to-scrollspy-id="dataset"
+                      >
+                        Dataset
+                      </Typography>
+                    </Links>
+                    <Links href="#nodes" sx={{ textDecoration: "unset" }}>
                       <Typography
                         variant="navSubtitle"
                         sx={{ paddingLeft: "10px" }}
+                        data-to-scrollspy-id="nodes"
                       >
                         Nodes
                       </Typography>
+                    </Links>
+                    <Links
+                      href="#relationships"
+                      sx={{ textDecoration: "unset" }}
+                    >
                       <Typography
                         variant="navSubtitle"
                         sx={{ paddingLeft: "10px" }}
                       >
                         Relationships
                       </Typography>
-                      <Typography variant="navSubtitle">
-                        Nodes and Relationships in Northwind Graph
+                    </Links>
+                    <Typography variant="navSubtitle">
+                      Nodes and Relationships in Northwind Graph
+                    </Typography>
+                  </Box>
+                </Box>
+                <ScrollSpyMUI
+                  sx={(theme) => ({
+                    "& .active-scroll-spy": {
+                      backgroundColor: "bluePrimary",
+                    },
+                  })}
+                >
+                  <Box
+                    component="article"
+                    id="dataset"
+                    sx={(theme) => ({
+                      // display: "flex",
+                      // flexDirection: "column",
+                      // gap: "10px",
+                      marginBottom: "10px",
+                    })}
+                  >
+                    <Typography
+                      variant="tabContentTitle"
+                      sx={(theme) => ({
+                        marginBottom: "10px",
+                      })}
+                    >
+                      Dataset
+                    </Typography>
+                    <Typography
+                      variant="tabContentSubtitle"
+                      sx={(theme) => ({
+                        marginBottom: "10px",
+                      })}
+                    >
+                      The Northwind dataset is a sample dataset that presents
+                      comprehensive information about product sales business
+                      operations, with the main entities involving Customer,
+                      Order, Product, and Product Category. Specifically
+                      designed to provide application and query examples in a
+                      relational and graph database environment, Northwind not
+                      only provides a comprehensive overview of the
+                      relationships between its entities, but also offers
+                      potential for a variety of uses, including the development
+                      of recommendation engines. By mining Customer, Order,
+                      Product, and Product Category data, this dataset can
+                      assist in creating an intelligent recommendation system,
+                      enabling the use of purchase patterns and preferences to
+                      provide relevant product recommendations.
+                    </Typography>
+                    <Box
+                      position={"relative"}
+                      sx={(theme) => ({
+                        // width: "100%",
+                        height: "330px",
+                        marginLeft: "70px",
+                        flex: 1,
+                        marginBottom: "10px",
+                        [theme.breakpoints.down("md")]: {
+                          marginLeft: "30px",
+                          width: "100%",
+                          height: "150px",
+                          minWidth: "130px",
+                          minHeight: "130px",
+                          flex: "unset",
+                          // display: "none",
+                        },
+                      })}
+                    >
+                      <Images
+                        src="/call_db_schema_visual_1.png"
+                        // width={500}
+                        // height={380}
+                        alt="db_schema_visual"
+                        fill
+                        sx={(theme) => ({
+                          objectFit: "contain",
+                          [theme.breakpoints.down("md")]: {
+                            // width: "120px",
+                            // height: "91px",
+                          },
+                        })}
+                      />
+                    </Box>
+                    <Typography
+                      variant="tabContentSubtitle"
+                      sx={(theme) => ({
+                        marginBottom: "10px",
+                      })}
+                    >
+                      In the context of a graph database, the Northwind dataset
+                      can be represented as a graph where entities are nodes and
+                      relationships between entities are edges. Each node in the
+                      graph represents a different type of entity, and the
+                      relationships between edges represent the associations
+                      between those entities.
+                    </Typography>
+                    <Divider />
+                  </Box>
+                  <Box
+                    component="article"
+                    id="nodes"
+                    sx={(theme) => ({
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                    })}
+                  >
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Typography variant="tabContentTitle">Nodes</Typography>
+                      <Typography variant="tabContentSubtitle">
+                        There are four main entities that form the basic
+                        framework of business operations and product
+                        transactions. The four entities, namely Customer,
+                        Product, Order, and Category, create a rich structure of
+                        information about customers, products, orders, and
+                        product categories.
                       </Typography>
                     </Box>
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Typography variant="bulletTitle">• Customer</Typography>
+                      <Typography
+                        variant="tabContentSubtitle"
+                        sx={(theme) => ({
+                          paddingLeft: "12px",
+                        })}
+                      >
+                        <Typography
+                          sx={{ color: "bluePrimary", fontWeight: 600 }}
+                          variant="span"
+                        >
+                          Customer
+                        </Typography>{" "}
+                        is an entity that represents individuals or companies
+                        that make purchases or transactions in the system. Each
+                        Customer node has properties such as customerID,
+                        companyName, contactName, and other contact information.
+                      </Typography>
+                      <Box
+                        sx={(theme) => ({
+                          paddingLeft: "14px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "3px",
+                        })}
+                      >
+                        {customerList.map((item, idx) => {
+                          return (
+                            <Typography variant="tabContentSubtitle" key={idx}>
+                              <Typography
+                                variant="span"
+                                sx={{ color: "bluePrimary", fontWeight: 500 }}
+                              >
+                                {item.title}
+                              </Typography>
+                              {item.desc}
+                            </Typography>
+                          );
+                        })}
+                      </Box>
+                    </Box>
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Typography variant="bulletTitle">• Order</Typography>
+                      <Typography
+                        variant="tabContentSubtitle"
+                        sx={(theme) => ({
+                          paddingLeft: "12px",
+                        })}
+                      >
+                        <Typography
+                          sx={{ color: "bluePrimary", fontWeight: 600 }}
+                          variant="span"
+                        >
+                          Order
+                        </Typography>{" "}
+                        is an entity that represents an order or transaction
+                        made by a Customer. Each Order node has properties such
+                        as orderID, orderDate, customerID, and other order
+                        information.
+                      </Typography>
+                      <Box
+                        sx={(theme) => ({
+                          paddingLeft: "14px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "3px",
+                        })}
+                      >
+                        {orderList.map((item, idx) => {
+                          return (
+                            <Typography variant="tabContentSubtitle" key={idx}>
+                              <Typography
+                                variant="span"
+                                sx={{ color: "bluePrimary", fontWeight: 500 }}
+                              >
+                                {item.title}
+                              </Typography>
+                              {item.desc}
+                            </Typography>
+                          );
+                        })}
+                      </Box>
+                    </Box>
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Typography variant="bulletTitle">• Product</Typography>
+                      <Typography
+                        variant="tabContentSubtitle"
+                        sx={(theme) => ({
+                          paddingLeft: "12px",
+                        })}
+                      >
+                        <Typography
+                          sx={{ color: "bluePrimary", fontWeight: 600 }}
+                          variant="span"
+                        >
+                          Product
+                        </Typography>{" "}
+                        is an entity that represents an order or transaction
+                        made by a Customer. Each Order node has properties such
+                        as orderID, orderDate, customerID, and other order
+                        information.
+                      </Typography>
+                      <Box
+                        sx={(theme) => ({
+                          paddingLeft: "14px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "3px",
+                        })}
+                      >
+                        {productList.map((item, idx) => {
+                          return (
+                            <Typography variant="tabContentSubtitle" key={idx}>
+                              <Typography
+                                variant="span"
+                                sx={{ color: "bluePrimary", fontWeight: 500 }}
+                              >
+                                {item.title}
+                              </Typography>
+                              {item.desc}
+                            </Typography>
+                          );
+                        })}
+                      </Box>
+                    </Box>
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Typography variant="bulletTitle">• Category</Typography>
+                      <Typography
+                        variant="tabContentSubtitle"
+                        sx={(theme) => ({
+                          paddingLeft: "12px",
+                        })}
+                      >
+                        <Typography
+                          sx={{ color: "bluePrimary", fontWeight: 600 }}
+                          variant="span"
+                        >
+                          Category
+                        </Typography>{" "}
+                        is an entity that represents a particular category or
+                        type of product. Each Category node has properties such
+                        as categoryID, categoryName, and other category
+                        information.
+                      </Typography>
+                      <Box
+                        sx={(theme) => ({
+                          paddingLeft: "14px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "3px",
+                        })}
+                      >
+                        {categoryList.map((item, idx) => {
+                          return (
+                            <Typography variant="tabContentSubtitle" key={idx}>
+                              <Typography
+                                variant="span"
+                                sx={{ color: "bluePrimary", fontWeight: 500 }}
+                              >
+                                {item.title}
+                              </Typography>
+                              {item.desc}
+                            </Typography>
+                          );
+                        })}
+                      </Box>
+                    </Box>
+                    <Divider />
                   </Box>
-                </Grid>
-              </Grid>
+                  <Box
+                    component="article"
+                    id="relationships"
+                    sx={(theme) => ({
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                      marginTop: "10px",
+                    })}
+                  >
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Typography variant="tabContentTitle">
+                        Relationships
+                      </Typography>
+                      <Typography variant="tabContentSubtitle">
+                        In a graph database, relationships are very important.
+                        Relationships make it possible to traverse the graph so
+                        as to find relationships between entities. In a graph
+                        database, relationships between nodes can be represented
+                        by edges or relationships of a certain type. In the
+                        context of the Northwind dataset, there are three types
+                        of relations: PURCHASED, ORDERS, and PART_OF.
+                      </Typography>
+                    </Box>
+                    {relationshipList.map((item, idx) => {
+                      return (
+                        <Box
+                          key={idx}
+                          sx={(theme) => ({
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "10px",
+                          })}
+                        >
+                          <Typography variant="bulletTitle">
+                            {item.title}
+                          </Typography>
+                          <Box>
+                            <CodeBlockStyle
+                              code={item.code}
+                              language={item.titleCode}
+                              sx={(theme) => ({
+                                margin: "0",
+                              })}
+                            />
+                          </Box>
+                          <Typography variant="tabContentSubtitle">
+                            {item.exampleTitle}
+                            <Typography
+                              variant="span"
+                              sx={{ fontWeight: 600, color: "bluePrimary" }}
+                            >
+                              {item.importantSubtitle}
+                            </Typography>{" "}
+                            {item.exampleTitleLast}
+                          </Typography>
+                          <Typography variant="tabContentSubtitle">
+                            The{" "}
+                            <Typography
+                              variant="span"
+                              sx={{ fontWeight: 600, color: "bluePrimary" }}
+                            >
+                              {item.importantSubtitle}
+                            </Typography>{" "}
+                            {item.subTitle}
+                          </Typography>
+                        </Box>
+                      );
+                    })}
+
+                    <Divider />
+                  </Box>
+                </ScrollSpyMUI>
+              </Stack>
             </Box>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}></CustomTabPanel>

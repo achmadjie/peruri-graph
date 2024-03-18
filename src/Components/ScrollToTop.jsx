@@ -33,9 +33,21 @@ export default function ScrollTop(props) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
+        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: "15" }}
       >
-        <Button>Back to Top</Button>
+        <Button
+          variant="contained"
+          sx={(theme) => ({
+            padding: "7px 15px",
+            borderRadius: "20px",
+            fontSize: "12px",
+            "&:hover": {
+              backgroundColor: "primary.main",
+            },
+          })}
+        >
+          Back to Top
+        </Button>
       </Box>
     </Fade>
   );
