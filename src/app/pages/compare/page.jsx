@@ -11,6 +11,7 @@ import {
   summaryEasierNaturalData,
   tabTitle,
 } from "@/app/MappingData";
+import { Padding } from "@mui/icons-material";
 import {
   Box,
   Container,
@@ -43,7 +44,18 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box
+          sx={(theme) => ({
+            padding: 3,
+            [theme.breakpoints.down("md")]: {
+              padding: 1,
+            },
+          })}
+        >
+          {children}
+        </Box>
+      )}
     </div>
   );
 }
@@ -90,6 +102,7 @@ export default function ComparePages() {
           marginBottom: "50px",
           [theme.breakpoints.down("md")]: {
             padding: "0 20px",
+            marginBottom: "15px",
           },
         })}
       >
@@ -143,13 +156,16 @@ export default function ComparePages() {
       </Box>
       <Box sx={{ width: "100%" }}>
         <Box
-          sx={{
+          sx={(theme) => ({
             position: "sticky",
             top: "0",
             zIndex: 10,
             paddingBlock: "2rem",
             backgroundColor: "primary.main",
-          }}
+            [theme.breakpoints.down("md")]: {
+              paddingBlock: "1rem",
+            },
+          })}
         >
           <Tabs
             value={value}
@@ -176,7 +192,7 @@ export default function ComparePages() {
                   key={idx}
                   label={item}
                   sx={{
-                    flex: "1",
+                    flex: 1,
                     fontSize: "clamp(0.5rem, 0.72vw + 0.31rem, 1rem)",
                   }}
                   {...a11yProps(idx)}
@@ -233,7 +249,15 @@ export default function ComparePages() {
                       },
                     })}
                   >
-                    <Typography variant="tabContentTitle" marginBottom="30px">
+                    <Typography
+                      variant="tabContentTitle"
+                      sx={(theme) => ({
+                        marginBottom: "30px",
+                        [theme.breakpoints.down("md")]: {
+                          marginBottom: "15px",
+                        },
+                      })}
+                    >
                       {item.titleGraph}
                     </Typography>
                     <CodeBlock

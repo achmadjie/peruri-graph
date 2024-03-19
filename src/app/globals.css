@@ -12,6 +12,15 @@ html {
   scroll-padding-top: 125px;
 }
 
+.active-scroll-spy {
+  color: #043f75;
+  font-weight: bold;
+  /* color: whitesmoke;
+  border-radius: 10px;
+  background-color: #043f75;
+  padding: 5px 11px; */
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */

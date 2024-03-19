@@ -25,6 +25,7 @@ export default function Footer() {
           "&.MuiContainer-root": {
             maxWidth: "100%",
             padding: "35px 40px",
+            marginTop: "50px",
           },
         },
       })}

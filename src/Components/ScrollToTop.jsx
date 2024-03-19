@@ -40,9 +40,12 @@ export default function ScrollTop(props) {
           sx={(theme) => ({
             padding: "7px 15px",
             borderRadius: "20px",
-            fontSize: "12px",
+            fontSize: "clamp(0.56rem, 0.18vw + 0.51rem, 0.69rem);",
             "&:hover": {
               backgroundColor: "primary.main",
+            },
+            [theme.breakpoints.down("md")]: {
+              padding: "7px 10px",
             },
           })}
         >

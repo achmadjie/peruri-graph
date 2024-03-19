@@ -33,8 +33,12 @@ export default function CodeBlock({ code, language }) {
         backgroundColor: "grey.main",
         padding: "20px 30px",
         borderRadius: "7px",
-        marginBottom: "30px",
+        marginBottom: "10px",
         height: "fit-content",
+        [theme.breakpoints.down("md")]: {
+          marginBottom: "7px",
+          padding: "15px 20px",
+        },
       })}
     >
       <Box
@@ -52,7 +56,7 @@ export default function CodeBlock({ code, language }) {
           sx={(theme) => ({
             margin: "8px",
             // flexBasis: "3/4",
-            fontSize: "16px",
+            fontSize: "clamp(0.75rem, 0.36vw + 0.65rem, 1rem)",
             color: "bluePrimary",
             fontWeight: 600,
             textTransform: "capitalize",
@@ -63,7 +67,14 @@ export default function CodeBlock({ code, language }) {
         <Box sx={{ display: "grid", placeItems: "center" }}>
           <CopyToClipboardStyled text={code} onCopy={copy}>
             {copied ? (
-              <Typography>Copied!</Typography>
+              <Typography
+                sx={(theme) => ({
+                  fontSize: "clamp(0.75rem, 0.36vw + 0.65rem, 1rem);",
+                  [theme.breakpoints.down("md")]: {},
+                })}
+              >
+                Copied!
+              </Typography>
             ) : (
               // <CheckCircle
               //   sx={(theme) => ({
@@ -76,7 +87,7 @@ export default function CodeBlock({ code, language }) {
               // />
               <ContentCopy
                 sx={(theme) => ({
-                  fontSize: "20px",
+                  fontSize: "clamp(0.94rem, 0.45vw + 0.82rem, 1.25rem);",
                   margin: "8px",
                   // basis: "1/4",
                   "&:hover": {
@@ -90,7 +101,10 @@ export default function CodeBlock({ code, language }) {
         </Box>
       </Box>
       <SyntaxHighlighter
-        customStyle={{ backgroundColor: "transparent", fontSize: "13px" }}
+        customStyle={{
+          backgroundColor: "transparent",
+          fontSize: "clamp(0.63rem, 0.27vw + 0.55rem, 0.81rem);",
+        }}
         language={language}
         style={atomOneLight}
         wrapLines={true}

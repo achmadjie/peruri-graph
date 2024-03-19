@@ -603,3 +603,48 @@ export const relationshipList = [
       "relation can be used to describe the relationship between a Product node and a Category node. If a product belongs to a category, the relation can be used to show the relationship between the product and the category.",
   },
 ];
+
+export const customerAndOrderList = [
+  {
+    importantDesc: "• Customer ",
+    desc: "node represents the customer involved in the transaction.",
+  },
+  {
+    importantDesc: "• [:PURCHASED] ",
+    desc: "connects customers with the orders they place.",
+  },
+  {
+    importantDesc: "• Order ",
+    desc: "node represents an order placed by a particular customer.",
+  },
+];
+
+export const orderAndProductList = [
+  {
+    importantDesc: "• Order ",
+    desc: "represents orders that have been created.",
+  },
+  {
+    importantDesc: "• [:ORDERS] ",
+    desc: "connects orders with the products in the order.",
+  },
+  {
+    importantDesc: "• Product ",
+    desc: "represents the products that have been ordered in order.",
+  },
+];
+
+export const orderAndCategoryList = [
+  {
+    importantDesc: "• Product ",
+    desc: "represent products that are available or ordered.",
+  },
+  {
+    importantDesc: "• [:PART_OF] ",
+    desc: "connects a product to the category it belongs to.",
+  },
+  {
+    importantDesc: "• Category ",
+    desc: "node represents the category or type of the product.",
+  },
+];

@@ -7,10 +7,6 @@ import {
   Box,
   Container,
   Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
   Paper,
   Stack,
   Tab,
@@ -22,41 +18,27 @@ import HomeBanner from "../../../../public/abstract/HomeBanner";
 import {
   CardRecommendationEngineData,
   categoryList,
+  customerAndOrderList,
   customerList,
-  easierNaturalData,
-  efficiencyQuery,
-  efficiencyQueryDescGraph,
-  efficiencyQueryDescRDBMS,
+  orderAndCategoryList,
+  orderAndProductList,
   orderList,
   productList,
   relationshipList,
-  schemaFlexData,
-  summaryEasierNaturalData,
-  tabTitle,
   tabTitleRecommen,
 } from "@/app/MappingData";
-// import CodeBlock from "@/Components/CodeBlock";
 import ScrollSpy from "react-ui-scrollspy";
 import Link from "next/link";
 import CodeBlock from "@/Components/CodeBlock";
 
 const Images = styled(Image)({});
 const Links = styled(Link)({});
-const importantText = styled(Typography)({
-  fontWeight: 400,
-  color: "bluePrimary",
-  fontSize: "tabSubtitle",
-});
 const ScrollSpyMUI = styled(ScrollSpy)({});
 const CodeBlockStyle = styled(CodeBlock)({});
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
   // const [scrollValue, setScrollValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <Box
@@ -67,7 +49,16 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3, position: "relative" }}>{children}</Box>
+        <Box
+          sx={(theme) => ({
+            padding: 3,
+            [theme.breakpoints.down("md")]: {
+              padding: 1,
+            },
+          })}
+        >
+          {children}
+        </Box>
       )}
     </Box>
   );
@@ -91,6 +82,10 @@ export default function RecommendationEnginePage() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    // window.scrollTo({
+    //   top: 350,
+    //   behavior: "smooth",
+    // });
   };
 
   return (
@@ -224,7 +219,7 @@ export default function RecommendationEnginePage() {
           padding: "0 200px",
           marginTop: "90px",
           [theme.breakpoints.down("md")]: {
-            padding: "0 30px",
+            padding: "0 10px",
             marginTop: "50px",
           },
           [theme.breakpoints.up("lg")]: {
@@ -232,7 +227,14 @@ export default function RecommendationEnginePage() {
           },
         })}
       >
-        <Box>
+        <Box
+          sx={(theme) => ({
+            marginBottom: "100px",
+            [theme.breakpoints.down("md")]: {
+              marginBottom: "50px",
+            },
+          })}
+        >
           <Box
             sx={(theme) => ({
               display: "flex",
@@ -339,13 +341,17 @@ export default function RecommendationEnginePage() {
         </Box>
         <Box sx={{ width: "100%" }}>
           <Box
-            sx={{
+            sx={(theme) => ({
               position: "sticky",
               top: "0",
               zIndex: 10,
               paddingBlock: "2rem",
+              // boxShadow: "0px 4px 13px -4px rgba(0,0,0,0.51)",
               backgroundColor: "primary.main",
-            }}
+              [theme.breakpoints.down("md")]: {
+                paddingBlock: "1rem",
+              },
+            })}
           >
             <Tabs
               value={value}
@@ -353,7 +359,7 @@ export default function RecommendationEnginePage() {
               variant="scrollable"
               // scrollButtons
               // allowScrollButtonsMobile
-              aria-label="Compare Tabs"
+              aria-label="Recommendation Tabs"
               sx={(theme) => ({
                 border: "none",
                 padding: "8px",
@@ -398,22 +404,32 @@ export default function RecommendationEnginePage() {
                 sx={(theme) => ({
                   display: "flex",
                   flexDirection: "row-reverse",
-                  gap: "50px",
+                  gap: "90px",
                 })}
               >
                 <Box
                   component="nav"
-                  sx={{
+                  sx={(theme) => ({
                     height: "fit-content",
-                    width: "600px",
+                    width: "950px",
                     position: "sticky",
                     top: "130px",
                     right: "30px",
                     fontSize: "14px",
-                  }}
+                    [theme.breakpoints.down("md")]: {
+                      display: "none",
+                    },
+                  })}
                 >
                   <Typography variant="navTitle">On This Page</Typography>
-                  <Box>
+                  <Box
+                    sx={(theme) => ({
+                      marginTop: "10px",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "5px",
+                    })}
+                  >
                     <Links href="#dataset" sx={{ textDecoration: "unset" }}>
                       <Typography
                         variant="navSubtitle"
@@ -438,22 +454,32 @@ export default function RecommendationEnginePage() {
                       <Typography
                         variant="navSubtitle"
                         sx={{ paddingLeft: "10px" }}
+                        data-to-scrollspy-id="relationships"
                       >
                         Relationships
                       </Typography>
                     </Links>
-                    <Typography variant="navSubtitle">
-                      Nodes and Relationships in Northwind Graph
-                    </Typography>
+                    <Links
+                      href="#nodesandrelationship"
+                      sx={{ textDecoration: "unset" }}
+                    >
+                      <Typography
+                        variant="navSubtitle"
+                        data-to-scrollspy-id="nodesandrelationship"
+                      >
+                        Nodes and Relationships in Northwind Graph
+                      </Typography>
+                    </Links>
                   </Box>
+                  <Divider
+                    sx={(theme) => ({
+                      borderWidth: "1px",
+                      borderColor: "grey2",
+                      marginTop: "20px",
+                    })}
+                  />
                 </Box>
-                <ScrollSpyMUI
-                  sx={(theme) => ({
-                    "& .active-scroll-spy": {
-                      backgroundColor: "bluePrimary",
-                    },
-                  })}
-                >
+                <ScrollSpyMUI scrollThrottle={100}>
                   <Box
                     component="article"
                     id="dataset"
@@ -461,7 +487,7 @@ export default function RecommendationEnginePage() {
                       // display: "flex",
                       // flexDirection: "column",
                       // gap: "10px",
-                      marginBottom: "10px",
+                      // marginBottom: "10px",
                     })}
                   >
                     <Typography
@@ -502,7 +528,7 @@ export default function RecommendationEnginePage() {
                         flex: 1,
                         marginBottom: "10px",
                         [theme.breakpoints.down("md")]: {
-                          marginLeft: "30px",
+                          margin: "0 auto",
                           width: "100%",
                           height: "150px",
                           minWidth: "130px",
@@ -521,8 +547,8 @@ export default function RecommendationEnginePage() {
                         sx={(theme) => ({
                           objectFit: "contain",
                           [theme.breakpoints.down("md")]: {
-                            // width: "120px",
-                            // height: "91px",
+                            width: "120px",
+                            height: "91px",
                           },
                         })}
                       />
@@ -530,7 +556,7 @@ export default function RecommendationEnginePage() {
                     <Typography
                       variant="tabContentSubtitle"
                       sx={(theme) => ({
-                        marginBottom: "10px",
+                        // marginBottom: "10px",
                       })}
                     >
                       In the context of a graph database, the Northwind dataset
@@ -540,7 +566,13 @@ export default function RecommendationEnginePage() {
                       relationships between edges represent the associations
                       between those entities.
                     </Typography>
-                    <Divider />
+                    <Divider
+                      sx={(theme) => ({
+                        borderWidth: "1px",
+                        borderColor: "grey2",
+                        margin: "35px auto",
+                      })}
+                    />
                   </Box>
                   <Box
                     component="article"
@@ -760,7 +792,14 @@ export default function RecommendationEnginePage() {
                         })}
                       </Box>
                     </Box>
-                    <Divider />
+                    <Divider
+                      sx={(theme) => ({
+                        borderWidth: "1px",
+                        width: "100%",
+                        borderColor: "grey2",
+                        margin: "35px auto",
+                      })}
+                    />
                   </Box>
                   <Box
                     component="article"
@@ -769,7 +808,7 @@ export default function RecommendationEnginePage() {
                       display: "flex",
                       flexDirection: "column",
                       gap: "10px",
-                      marginTop: "10px",
+                      // marginTop: "10px",
                     })}
                   >
                     <Box
@@ -837,8 +876,207 @@ export default function RecommendationEnginePage() {
                         </Box>
                       );
                     })}
-
-                    <Divider />
+                    <Divider
+                      sx={(theme) => ({
+                        borderWidth: "1px",
+                        borderColor: "grey2",
+                        margin: "35px auto",
+                        width: "100%",
+                      })}
+                    />
+                  </Box>
+                  <Box
+                    component="article"
+                    id="nodesandrelationship"
+                    sx={(theme) => ({
+                      // display: "flex",
+                      // flexDirection: "column",
+                      // gap: "10px",
+                      // marginTop: "10px",
+                    })}
+                  >
+                    <Box>
+                      <Typography
+                        variant="tabContentTitle"
+                        sx={(theme) => ({
+                          marginBottom: "10px",
+                        })}
+                      >
+                        Nodes and Relationship in Northwind Graph
+                      </Typography>
+                      <Box
+                        position={"relative"}
+                        sx={(theme) => ({
+                          // width: "100%",
+                          height: "330px",
+                          marginLeft: "70px",
+                          flex: 1,
+                          marginBottom: "10px",
+                          [theme.breakpoints.down("md")]: {
+                            margin: "0 auto",
+                            width: "100%",
+                            height: "150px",
+                            minWidth: "130px",
+                            minHeight: "130px",
+                            flex: "unset",
+                            // display: "none",
+                          },
+                        })}
+                      >
+                        <Images
+                          src="/nodes_&_relationship.png"
+                          // width={500}
+                          // height={380}
+                          alt="db_schema_visual"
+                          fill
+                          sx={(theme) => ({
+                            objectFit: "contain",
+                            [theme.breakpoints.down("md")]: {
+                              // width: "120px",
+                              // height: "91px",
+                            },
+                          })}
+                        />
+                      </Box>
+                      <Typography
+                        variant="tabContentSubtitle"
+                        sx={(theme) => ({
+                          marginBottom: "10px",
+                        })}
+                      >
+                        The result of this query will contain all paths that
+                        satisfy the defined graph pattern, which consists of
+                        nodes and relations connected through the relations
+                        :PURCHASED, :ORDERS, and :PART_OF. Each path in the
+                        result will include all the nodes and relations involved
+                        in the pattern.
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={(theme) => ({
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      })}
+                    >
+                      <Box
+                        sx={(theme) => ({
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "5px",
+                        })}
+                      >
+                        <Typography variant="bulletTitle">
+                          • Customer and Order
+                        </Typography>
+                        <Box
+                          sx={(theme) => ({
+                            paddingLeft: "14px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "3px",
+                          })}
+                        >
+                          {customerAndOrderList.map((item, idx) => {
+                            return (
+                              <Typography
+                                variant="tabContentSubtitle"
+                                key={idx}
+                              >
+                                <Typography
+                                  variant="span"
+                                  sx={{
+                                    color: "bluePrimary",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  {item.importantDesc}
+                                </Typography>
+                                {item.desc}
+                              </Typography>
+                            );
+                          })}
+                        </Box>
+                      </Box>
+                      <Box
+                        sx={(theme) => ({
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "5px",
+                        })}
+                      >
+                        <Typography variant="bulletTitle">
+                          • Order and Product
+                        </Typography>
+                        <Box
+                          sx={(theme) => ({
+                            paddingLeft: "14px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "3px",
+                          })}
+                        >
+                          {orderAndProductList.map((item, idx) => {
+                            return (
+                              <Typography
+                                variant="tabContentSubtitle"
+                                key={idx}
+                              >
+                                <Typography
+                                  variant="span"
+                                  sx={{
+                                    color: "bluePrimary",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  {item.importantDesc}
+                                </Typography>
+                                {item.desc}
+                              </Typography>
+                            );
+                          })}
+                        </Box>
+                      </Box>
+                      <Box
+                        sx={(theme) => ({
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "5px",
+                        })}
+                      >
+                        <Typography variant="bulletTitle">
+                          • Order and Product
+                        </Typography>
+                        <Box
+                          sx={(theme) => ({
+                            paddingLeft: "14px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "3px",
+                          })}
+                        >
+                          {orderAndCategoryList.map((item, idx) => {
+                            return (
+                              <Typography
+                                variant="tabContentSubtitle"
+                                key={idx}
+                              >
+                                <Typography
+                                  variant="span"
+                                  sx={{
+                                    color: "bluePrimary",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  {item.importantDesc}
+                                </Typography>
+                                {item.desc}
+                              </Typography>
+                            );
+                          })}
+                        </Box>
+                      </Box>
+                    </Box>
                   </Box>
                 </ScrollSpyMUI>
               </Stack>

@@ -25,6 +25,7 @@ const colors = {
   navbarFontColor: "#4F4F4F",
   bluePrimary: "#034EA1",
   blueTeritary: "#D9E7F4",
+  blueSecondary: "#043F75",
   grey: { main: "#E0E0E0" },
   grey1: "#828282",
   grey2: "#BDBDBD",
@@ -130,7 +131,7 @@ export const theme = createTheme({
           textTransform: "capitalize",
           "&.Mui-selected": {
             backgroundColor: colors.bluePrimary,
-            color: colors.blueTeritary,
+            color: "#F1FAFF",
             borderRadius: "8px",
           },
           // "& .MuiTabs-indicator": {
@@ -252,7 +253,7 @@ export const theme = createTheme({
     },
     navSubtitle: {
       fontSize: "clamp(0.63rem, 0.45vw + 0.51rem, 0.88rem)",
-      fontWeight: 500,
+      fontWeight: 400,
       color: colors.grey2,
     },
   },

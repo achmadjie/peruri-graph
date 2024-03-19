@@ -78,7 +78,6 @@ export default function Navbar(props) {
         sx={(theme) => ({
           backgroundColor: "primary.main",
           marginBottom: "64px",
-
           [theme.breakpoints.down("md")]: {
             marginBottom: 0,
           },
